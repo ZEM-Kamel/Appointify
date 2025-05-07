@@ -197,7 +197,7 @@ By focusing on user satisfaction, operational efficiency, and professional servi
 
 1. A valuable UX improvement would be implementing a Smart Time Slot Recommendation feature that suggests optimal appointment times based on the user's past booking behavior and current specialist availability. This personalization reduces decision fatigue and speeds up the booking process by highlighting preferred time ranges and offering a one-tap “Best Available Time” option.
 
-2.Introducing a "Quick Book" feature would streamline the process for returning users by allowing them to instantly book appointments with their preferred specialists using pre-saved preferences like time, day, and location. This reduces repetitive steps and creates a faster, more convenient experience for frequent users.
+2. Introducing a "Quick Book" feature would streamline the process for returning users by allowing them to instantly book appointments with their preferred specialists using pre-saved preferences like time, day, and location. This reduces repetitive steps and creates a faster, more convenient experience for frequent users.
 
 ## ⚠️ Known Limitations
 
