@@ -1,0 +1,28 @@
+// import 'package:appointify_app/features/home/presentation/views/widgets/categories_grid_view.dart';
+// import 'package:appointify_app/features/specialists/domain/providers/specialist_provider.dart';
+// import 'package:flutter/material.dart';
+// import 'package:provider/provider.dart';
+//
+// class CategoryGridSection extends StatelessWidget {
+//   const CategoryGridSection({super.key});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     final provider = Provider.of<SpecialistProvider>(context);
+//     final groupedSpecialists = provider.getSpecialistsByCategories();
+//     final categories = groupedSpecialists.keys.toList();
+//
+//     if (provider.isLoading) {
+//       return const Center(child: CircularProgressIndicator());
+//     }
+//
+//     if (provider.error != null) {
+//       return Center(child: Text(provider.error!));
+//     }
+//
+//     return CategoryGrid(
+//       groupedSpecialists: groupedSpecialists,
+//       categories: categories,
+//     );
+//   }
+// }

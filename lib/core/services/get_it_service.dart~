@@ -1,0 +1,63 @@
+import 'package:appointify_app/core/services/firebase_service.dart';
+import 'package:appointify_app/core/services/firestore_service.dart';
+import 'package:get_it/get_it.dart';
+import 'package:appointify_app/core/services/database_service.dart';
+import 'package:appointify_app/core/services/firebase_auth_service.dart';
+import 'package:appointify_app/features/auth/domain/repos/auth_repo.dart';
+import 'package:appointify_app/features/auth/data/repos/auth_repo_impl.dart';
+import 'package:appointify_app/features/specialists/data/datasources/specialist_remote_data_source.dart';
+import 'package:appointify_app/features/specialists/data/datasources/specialist_remote_data_source_impl.dart';
+import 'package:appointify_app/features/specialists/domain/repos/specialist_repo.dart';
+import 'package:appointify_app/features/specialists/data/repos/specialist_repo_impl.dart';
+import 'package:appointify_app/features/appointments/domain/repos/appointment_repo.dart';
+import 'package:appointify_app/features/appointments/data/repos/appointment_repo_impl.dart';
+import 'package:appointify_app/features/appointments/presentation/cubits/appointments_cubit/appointments_cubit.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+final getIt = GetIt.instance;
+
+Future<void> setupGetIt() async {
+  // Services
+  getIt.registerSingleton<FirebaseAuthService>(FirebaseAuthService());
+  getIt.registerSingleton<DatabaseService>(FirebaseService());
+  
+  // SharedPreferences
+  final sharedPreferences = await SharedPreferences.getInstance();
+  getIt.registerSingleton<SharedPreferences>(sharedPreferences);
+
+  // Data Sources
+  getIt.registerSingleton<SpecialistRemoteDataSource>(
+    SpecialistRemoteDataSourceImpl(),
+  );
+
+  // Repositories
+  getIt.registerSingleton<AuthRepo>(
+    AuthRepoImpl(
+      firebaseAuthService: getIt<FirebaseAuthService>(),
+      databaseService: getIt<DatabaseService>(),
+    ),
+  );
+
+  getIt.registerSingleton<SpecialistRepository>(
+    SpecialistRepositoryImpl(
+      remoteDataSource: getIt<SpecialistRemoteDataSource>(),
+    ),
+  );
+
+  // Appointment Feature
+  getIt.registerLazySingleton<AppointmentRepository>(
+    () => AppointmentRepositoryImpl(
+      firestore: getIt(),
+    ),
+  );
+
+  getIt.registerFactory<AppointmentBloc>(
+    () => AppointmentBloc(getIt()),
+  );
+
+  // Firebase Services
+  getIt.registerSingleton<FirebaseAuth>(FirebaseAuth.instance);
+  getIt.registerSingleton<FirebaseFirestore>(FirebaseFirestore.instance);
+}

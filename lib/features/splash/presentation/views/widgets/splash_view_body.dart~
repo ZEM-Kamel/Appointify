@@ -1,0 +1,48 @@
+import 'package:appointify_app/constants.dart';
+import 'package:appointify_app/core/services/firebase_auth_service.dart';
+import 'package:appointify_app/core/services/shared_preferences_singleton.dart';
+import 'package:appointify_app/features/auth/presentation/views/signin_view.dart';
+import 'package:appointify_app/features/home/presentation/views/main_layout.dart';
+import 'package:appointify_app/features/on_boarding/on_boarding_view.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+
+class SplashViewBody extends StatefulWidget {
+  const SplashViewBody({super.key});
+
+  @override
+  State<SplashViewBody> createState() => _SplashViewBodyState();
+}
+
+class _SplashViewBodyState extends State<SplashViewBody> {
+  @override
+  void initState() {
+    executeNavigation();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(child: Image.asset('assets/images/app_logo.png')).animate().fadeIn(
+    duration: const Duration(milliseconds: 400),
+    delay: const Duration(milliseconds: 200),
+    );
+  }
+  void executeNavigation() {
+    bool isOnBoardingViewSeen = Prefs.getBool(kIsOnBoardingViewSeen);
+    Future.delayed(const Duration(seconds: 3), () {
+      if (isOnBoardingViewSeen) {
+        var isLoggedIn = FirebaseAuthService().isLoggedIn();
+
+        if (isLoggedIn) {
+          // Navigator.pushReplacementNamed(context, HomeView.routeName);
+          Navigator.pushReplacementNamed(context, MainLayout.routeName);
+        } else {
+          Navigator.pushReplacementNamed(context, SignInView.routeName);
+        }
+      } else {
+        Navigator.pushReplacementNamed(context, OnBoardingView.routeName);
+      }
+    });
+  }
+}

@@ -1,0 +1,152 @@
+import 'package:appointify_app/core/utils/app_text_styles.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:appointify_app/constants.dart';
+import 'package:appointify_app/features/appointments/domain/entities/appointment_entity.dart';
+import 'package:appointify_app/features/appointments/presentation/cubits/appointments_cubit/appointments_cubit.dart';
+import 'package:intl/intl.dart';
+
+class RescheduleAppointmentDialog extends StatefulWidget {
+  const RescheduleAppointmentDialog({
+    super.key,
+    required this.appointment,
+    required this.onReschedule,
+  });
+
+  final AppointmentEntity appointment;
+  final Function(DateTime date, String time) onReschedule;
+
+  @override
+  State<RescheduleAppointmentDialog> createState() =>
+      _RescheduleAppointmentDialogState();
+}
+
+class _RescheduleAppointmentDialogState
+    extends State<RescheduleAppointmentDialog> {
+  DateTime? selectedDate;
+  String? selectedTime;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedDate = widget.appointment.date;
+    context.read<AppointmentsCubit>().getAvailableTimeSlots(
+          widget.appointment.specialist.id,
+          selectedDate!,
+        );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<AppointmentsCubit, AppointmentsState>(
+      listener: (context, state) {
+        if (state is AppointmentsError) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(state.message)),
+          );
+        }
+      },
+      builder: (context, state) {
+        return AlertDialog(
+          title: const Text('Reschedule Appointment'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Current appointment: ${DateFormat('MMM dd, yyyy').format(widget.appointment.date)} at ${widget.appointment.time}',
+                style: TextStyles.regular13,
+              ),
+              const SizedBox(height: 16),
+              Text(
+                'Select New Date',
+                style: TextStyles.bold16,
+              ),
+              const SizedBox(height: 8),
+              InkWell(
+                onTap: () async {
+                  final date = await showDatePicker(
+                    context: context,
+                    initialDate: selectedDate ?? DateTime.now(),
+                    firstDate: DateTime.now(),
+                    lastDate: DateTime.now().add(const Duration(days: 30)),
+                  );
+                  if (date != null) {
+                    setState(() {
+                      selectedDate = date;
+                      selectedTime = null;
+                    });
+                    context.read<AppointmentsCubit>().getAvailableTimeSlots(
+                          widget.appointment.specialist.id,
+                          date,
+                        );
+                  }
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        selectedDate != null
+                            ? DateFormat('MMM dd, yyyy').format(selectedDate!)
+                            : 'Select a date',
+                      ),
+                      const Icon(Icons.calendar_today),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+              Text(
+                'Available Time Slots',
+                style: TextStyles.bold16,
+              ),
+              const SizedBox(height: 8),
+              if (state is TimeSlotsLoaded)
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: state.timeSlots.map((time) {
+                    final isSelected = selectedTime == time;
+                    return ChoiceChip(
+                      label: Text(time),
+                      selected: isSelected,
+                      onSelected: (selected) {
+                        setState(() {
+                          selectedTime = selected ? time : null;
+                        });
+                      },
+                    );
+                  }).toList(),
+                )
+              else if (state is AppointmentsLoading)
+                const Center(child: CircularProgressIndicator())
+              else
+                const Text('No time slots available'),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Cancel'),
+            ),
+            ElevatedButton(
+              onPressed: selectedDate != null && selectedTime != null
+                  ? () {
+                      widget.onReschedule(selectedDate!, selectedTime!);
+                      Navigator.pop(context);
+                    }
+                  : null,
+              child: const Text('Reschedule'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+} 
