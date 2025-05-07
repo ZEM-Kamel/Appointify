@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "848926783805",
-    "project_id": "appointify-app-e10d6",
-    "storage_bucket": "appointify-app-e10d6.firebasestorage.app"
+    "project_number": "project_number",
+    "project_id": "project_id",
+    "storage_bucket": "storage_bucket"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:848926783805:android:63cbbec54f5592f657ad54",
+        "mobilesdk_app_id": "mobilesdk_app_id",
         "android_client_info": {
-          "package_name": "com.example.appointify_app"
+          "package_name": "package_name"
         }
       },
       "oauth_client": [
         {
-          "client_id": "848926783805-hsnhs49nmrkh6ibg95jd4c8e69jn6ic9.apps.googleusercontent.com",
+          "client_id": "client_id",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD_VQPzGQ_1E3H1rPKG8CggwYsYPBOll3Y"
+          "current_key": "current_key"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "848926783805-hsnhs49nmrkh6ibg95jd4c8e69jn6ic9.apps.googleusercontent.com",
+              "client_id": "client_id",
               "client_type": 3
             }
           ]
