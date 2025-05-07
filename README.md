@@ -73,7 +73,7 @@ Dark Mode
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-username/appointify_app.git
+   git clone https://github.com/ZEM-Kamel/Appointify.git
    cd appointify_app
    ```
 
@@ -242,21 +242,6 @@ By focusing on user satisfaction, operational efficiency, and professional servi
    - Enhanced search algorithms
    - Custom notification sounds
 
-## Contributing
-
-We welcome contributions! Please follow these steps:
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/your-feature`
-3. Commit changes: `git commit -m "Add your feature"`
-4. Push to the branch: `git push origin feature/your-feature`
-5. Open a pull request
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
-
-## Contact
-
-For any questions or support, please reach out to:
-- Email: your-email@example.com
-- LinkedIn: [Your LinkedIn Profile]
