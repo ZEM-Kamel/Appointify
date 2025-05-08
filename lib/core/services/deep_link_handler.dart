@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
-import 'package:appointify_app/features/auth/presentation/views/widgets/new_password_view.dart';
 
 /// Handles deep links for the Appointify app, particularly for password reset.
 class DeepLinkHandler {
@@ -37,11 +36,11 @@ class DeepLinkHandler {
         try {
           await FirebaseAuth.instance.verifyPasswordResetCode(code);
           
-          // Navigate to password reset view
-          Navigator.of(context, rootNavigator: true).pushNamed(
-            NewPasswordView.routeName,
-            arguments: code
-          );
+          // // Navigate to password reset view
+          // Navigator.of(context, rootNavigator: true).pushNamed(
+          //   NewPasswordView.routeName,
+          //   arguments: code
+          // );
         } catch (e) {
           print('Invalid password reset code: $e');
           // Show error message or navigate to error screen

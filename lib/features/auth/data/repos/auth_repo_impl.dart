@@ -55,56 +55,6 @@ class AuthRepoImpl extends AuthRepo {
   }
 
   @override
-  Future<void> sendOtpEmail(String email) async {
-    try {
-      String otp = generateOtp();
-      // Store the OTP in the temporary store
-      otpStore[email] = otp;
-      HttpsCallable callable = FirebaseFunctions.instance.httpsCallable('sendOtpEmail');
-      await callable.call(<String, dynamic>{
-        'email': email,
-        'otp': otp,
-      });
-    } catch (e) {
-      throw Exception(e.toString());
-    }
-  }
-
-  @override
-  Future<void> verifyOtp(String email, String otp) async {
-    try {
-      // Verify the OTP against the stored value
-      if (otpStore[email] == otp) {
-        // OTP is valid
-        otpStore.remove(email); // Remove the OTP after verification
-      } else {
-        throw Exception('Invalid OTP');
-      }
-    } catch (e) {
-      throw Exception(e.toString());
-    }
-  }
-
-  @override
-  Future<void> resendOtp(String email) async {
-    try {
-      await sendOtpEmail(email);
-    } catch (e) {
-      throw Exception(e.toString());
-    }
-  }
-
-  @override
-  Future<void> updatePasswordWithEmail(String email, String newPassword) async {
-    return firebaseAuthService.updatePasswordWithEmail(email, newPassword);
-  }
-
-  String generateOtp() {
-    var random = Random();
-    return (1000 + random.nextInt(9000)).toString();
-  }
-
-  @override
   Future<Either<Failure, UserEntity>> signInWithEmailAndPassword(
       String email, String password) async {
     try {

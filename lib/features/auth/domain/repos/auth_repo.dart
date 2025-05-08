@@ -6,12 +6,6 @@ abstract class AuthRepo {
    Future<Either<Failure, UserEntity>> createUserWithEmailAndPassword(
        String email, String password, String name);
 
-   Future<void> sendOtpEmail(String email);
-   Future<void> verifyOtp(String email, String otp); // Update the method signature
-   Future<void> resendOtp(String email);
-   Future<void> updatePasswordWithEmail(String email, String newPassword);
-   
-   // Password reset functionality
    Future<Either<Failure, void>> sendPasswordResetEmail(String email);
 
    Future<Either<Failure, UserEntity>> signInWithEmailAndPassword(

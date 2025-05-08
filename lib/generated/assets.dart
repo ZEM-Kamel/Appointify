@@ -8,6 +8,7 @@ class Assets {
   static const String assetsImagesImagesPageViewItem2Image = 'assets/images/imagesPageViewItem2Image.svg~';
   static const String assetsImagesPageViewItem1BackgroundImage = 'assets/images/page_view_item1_background_image.svg~';
   static const String coreHelperFunctionsOnGenerateRoutes = 'lib/core/helper_functions/on_generate_routes.dart~';
+  static const String coreServicesGetItService = 'lib/core/services/get_it_service.dart~';
   static const String cubitsAppointmentsCubit = 'lib/features/appointments/presentation/cubits/appointments_cubit.dart~';
   static const String cubitsSigninCubitSigninState = 'lib/features/auth/presentation/cubits/signin_cubit/signin_state.dart~';
   static const String datasourcesSpecialistRemoteDataSource = 'lib/features/specialists/data/datasources/specialist_remote_data_source.dart';
@@ -55,6 +56,7 @@ class Assets {
   static const String imagesVector = 'assets/images/Vector.svg';
   static const String libConstants = 'lib/constants.dart';
   static const String libFirebaseOptions = 'lib/firebase_options.dart';
+  static const String libGeneratedAssets = 'lib/generated/assets.dart~';
   static const String libMain = 'lib/main.dart';
   static const String mainLayoutCubitMainLayoutCubit = 'lib/features/home/presentation/cubits/main_layout_cubit/main_layout_cubit.dart';
   static const String mainLayoutCubitMainLayoutState = 'lib/features/home/presentation/cubits/main_layout_cubit/main_layout_state.dart';
@@ -133,7 +135,6 @@ class Assets {
   static const String widgetsHaveAnAccountWidget = 'lib/features/auth/presentation/views/widgets/have_an_account_widget.dart';
   static const String widgetsHomeView = 'lib/features/home/presentation/views/widgets/home_view.dart';
   static const String widgetsHomeViewBody = 'lib/features/home/presentation/views/widgets/home_view_body.dart';
-  static const String widgetsNewPasswordView = 'lib/features/auth/presentation/views/widgets/new_password_view.dart';
   static const String widgetsOnBoardingPageView = 'lib/features/on_boarding/presentation/views/widgets/on_boarding_page_view.dart';
   static const String widgetsOnBoardingViewBody = 'lib/features/on_boarding/presentation/views/widgets/on_boarding_view_body.dart';
   static const String widgetsOrDivider = 'lib/features/auth/presentation/views/widgets/or_divider.dart';

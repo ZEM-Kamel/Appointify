@@ -213,6 +213,4 @@ class FirebaseAuthService {
       throw Exception('Error signing out: ${e.toString()}');
     }
   }
-
-
 }
