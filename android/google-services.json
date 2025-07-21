@@ -1,34 +1,49 @@
 {
   "project_info": {
-    "project_number": "project_number",
-    "project_id": "project_id",
-    "storage_bucket": "storage_bucket"
+    "project_number": "848926783805",
+    "project_id": "appointify-app-e10d6",
+    "storage_bucket": "appointify-app-e10d6.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "mobilesdk_app_id",
+        "mobilesdk_app_id": "1:848926783805:android:63cbbec54f5592f657ad54",
         "android_client_info": {
-          "package_name": "package_name"
+          "package_name": "com.example.appointify_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "client_id",
+          "client_id": "848926783805-rr0qt7hpl98q7khbphpt4lq0cbmslh07.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.appointify_app",
+            "certificate_hash": "0e50661809bd35e04a2730cfa1dc56b2d4a3edd4"
+          }
+        },
+        {
+          "client_id": "848926783805-oi7hrl8frugmogoicjomtbgha5g766u3.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "current_key"
+          "current_key": "AIzaSyD_VQPzGQ_1E3H1rPKG8CggwYsYPBOll3Y"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "client_id",
+              "client_id": "848926783805-hsnhs49nmrkh6ibg95jd4c8e69jn6ic9.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "848926783805-2tf25e0enu998a7nf5o1bkpigc3l470t.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.appointifyApp"
+              }
             }
           ]
         }
