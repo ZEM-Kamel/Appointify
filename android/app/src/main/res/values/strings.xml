@@ -3,5 +3,5 @@
     <string name="app_name">Appointify</string>
     <string name="facebook_app_id">638595902468254</string>
     <string name="fb_login_protocol_scheme">fb1234</string>
-    <string name="facebook_client_token">be137537477642dbb8bbe05bfad1fb43</string>
+    <string name="facebook_client_token">---</string>
 </resources>
